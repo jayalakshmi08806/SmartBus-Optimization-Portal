@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample optimized data
+data = {
+    "Bus ID": ["B01", "B02", "B03", "B04"],
+    "Emissions (g/km)": [250, 300, 200, 350],
+    "Expected Emissions": [200.0, 240.0, 200.0, 280.0]
+}
+
+df = pd.DataFrame(data)
+
+# Plot emissions before and after
+plt.figure(figsize=(10, 6))
+bar_width = 0.35
+index = range(len(df))
+
+plt.bar(index, df["Emissions (g/km)"], bar_width, label="Before", color='red')
+plt.bar([i + bar_width for i in index], df["Expected Emissions"], bar_width, label="After", color='green')
+
+plt.xlabel("Bus ID")
+plt.ylabel("Emissions (g/km)")
+plt.title("Bus Emissions Before and After Optimization")
+plt.xticks([i + bar_width / 2 for i in index], df["Bus ID"])
+plt.legend()
+plt.tight_layout()
+
+# Show or save the graph
+plt.savefig("emissions_comparison.png")  # Saves the graph as a PNG
+plt.show()  # Displays the graph window
